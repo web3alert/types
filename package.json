@@ -1,0 +1,16 @@
+{
+  "name": "@web3alert/types",
+  "version": "4.0.0",
+  "description": "Common type definitions",
+  "author": "Web3alert Team <info@web3alert.io>",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "repository": "",
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "typescript": "^5.4.5"
+  }
+}
