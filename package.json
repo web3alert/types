@@ -1,14 +1,40 @@
 {
   "name": "@web3alert/types",
   "version": "4.0.0",
-  "description": "Common type definitions",
+  "description": "Common type definitions for Web3Alert platform",
   "author": "Web3alert Team <info@web3alert.io>",
+  "license": "MIT",
+  "keywords": [
+    "web3",
+    "web3alert",
+    "types",
+    "typescript",
+    "blockchain",
+    "notifications"
+  ],
+  "homepage": "https://web3alert.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/web3alert/types.git"
+  },
+  "bugs": {
+    "url": "https://github.com/web3alert/types/issues"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "repository": "",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
   "devDependencies": {
     "@types/node": "^20.12.7",
     "typescript": "^5.4.5"
