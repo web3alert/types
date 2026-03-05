@@ -2,6 +2,54 @@ import type { TypeSchema } from '../type-schema';
 import type { Tags, Labels } from '../common';
 import type { Event } from './event';
 
+export type TriggerSpec =
+  | {
+      type: 'evm_log';
+      chain?: string;
+      network?: string;
+      contract?: string;
+      event?: string;
+    }
+  | {
+      type: 'substrate_event';
+      chain?: string;
+      network?: string;
+      pallet?: string;
+      event?: string;
+    }
+  | {
+      type: 'timer';
+      interval: string;
+    };
+
+export type TriggerProvider = {
+  id: string;
+  type: 'http' | 'graphql' | 'rpc';
+  url: string;
+  method?: 'GET' | 'POST';
+  headers?: Record<string, string>;
+  body?: unknown;
+  query?: string;
+  variables?: Record<string, unknown>;
+  timeoutMs?: number;
+};
+
+export type TriggerOutputSchemaField = {
+  type: TypeSchema;
+  description?: string;
+};
+
+export type TriggerTransform = {
+  language: 'javascript';
+  source: string;
+};
+
+export type TriggerExecutionPolicy = {
+  maxProviderCallsPerRun?: number;
+  timeoutMs?: number;
+  maxResponseBytes?: number;
+};
+
 export type Trigger = {
   id: string;
   name: string;
@@ -13,6 +61,11 @@ export type Trigger = {
   values: Record<string, TypeSchema>;
   defaults?: Event;
   output?: Record<string, TypeSchema>;
+  triggerSpec?: TriggerSpec;
+  providers?: TriggerProvider[];
+  outputSchema?: Record<string, TriggerOutputSchemaField>;
+  transform?: TriggerTransform;
+  executionPolicy?: TriggerExecutionPolicy;
   tags: Tags;
   labels: Labels;
   meta: TriggerMeta;
