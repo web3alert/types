@@ -11,6 +11,8 @@ export type ProjectMetaLink = {
 
 export type Project = {
   id: string;
+  createdAt?: string;
+  updatedAt?: string;
   name: string;
   fullname: string;
   workspace: string;

@@ -1,11 +1,13 @@
 import type { UserViewShort } from './user';
 import type { WorkspaceViewShort } from './workspace';
 
+export type WorkspaceAccessLevel = 'owner' | 'admin' | 'developer' | 'user';
+
 export type AccessEntry = {
   id: string;
   object: AccessReference;
   subject: AccessReference;
-  level: string;
+  level: WorkspaceAccessLevel;
 };
 
 export type AccessReference = {
@@ -15,12 +17,12 @@ export type AccessReference = {
 
 export type UserMembership = {
   id: string;
-  level: string;
+  level: WorkspaceAccessLevel;
   workspace: WorkspaceViewShort;
 };
 
 export type WorkspaceMembership = {
   id: string;
-  level: string;
+  level: WorkspaceAccessLevel;
   user: UserViewShort;
 };
