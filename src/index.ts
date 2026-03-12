@@ -321,7 +321,8 @@ export type SubscriptionReferences = {
 };
 
 export type SubscriptionMeta = {
-  title: string;
+  title?: string;
+  issue?: string;
 };
 
 export type SubscriptionObjectRaw = {
