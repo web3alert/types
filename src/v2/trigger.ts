@@ -22,17 +22,60 @@ export type TriggerSpec =
       interval: string;
     };
 
-export type TriggerProvider = {
+export type TriggerProviderBase = {
   id: string;
-  type: 'http' | 'graphql' | 'rpc';
+  timeoutMs?: number;
+};
+
+export type TriggerHttpProvider = TriggerProviderBase & {
+  type: 'http';
   url: string;
   method?: 'GET' | 'POST';
   headers?: Record<string, string>;
+  queryParams?: Record<string, unknown>;
   body?: unknown;
-  query?: string;
-  variables?: Record<string, unknown>;
-  timeoutMs?: number;
 };
+
+export type TriggerGraphqlProvider = TriggerProviderBase & {
+  type: 'graphql';
+  url: string;
+  headers?: Record<string, string>;
+  query: string;
+  variables?: unknown;
+};
+
+export type TriggerRpcEndpointProvider = TriggerProviderBase & {
+  type: 'rpc';
+  transport?: 'endpoint';
+  url: string;
+  headers?: Record<string, string>;
+  method: string;
+  params?: unknown;
+  body?: unknown;
+};
+
+export type TriggerRpcSourceProvider = TriggerProviderBase & {
+  type: 'rpc';
+  transport: 'source';
+  method: string;
+  params?: unknown;
+};
+
+export type TriggerSubstrateStorageProvider = TriggerProviderBase & {
+  type: 'substrate_storage';
+  source?: string;
+  module: string;
+  entry: string;
+  args?: unknown;
+  block?: unknown;
+};
+
+export type TriggerProvider =
+  | TriggerHttpProvider
+  | TriggerGraphqlProvider
+  | TriggerRpcEndpointProvider
+  | TriggerRpcSourceProvider
+  | TriggerSubstrateStorageProvider;
 
 export type TriggerOutputSchemaField = {
   type: TypeSchema;
@@ -41,7 +84,9 @@ export type TriggerOutputSchemaField = {
 
 export type TriggerTransform = {
   language: 'javascript';
-  source: string;
+  source?: string;
+  rawSource?: string;
+  humanSource?: string;
 };
 
 export type TriggerExecutionPolicy = {

@@ -82,6 +82,7 @@ export type MarketplaceSandboxExecuteRequest = {
     subject?: string;
     ts?: string;
   };
+  source?: MarketplaceRuntimeSourceBinding | null;
   transform: TriggerTransform;
   providers: TriggerProvider[];
   limits: {

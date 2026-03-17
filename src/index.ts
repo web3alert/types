@@ -13,6 +13,7 @@ export * from './common';
 export * from './state';
 export * from './category';
 export * from './source';
+export * from './custom-source';
 export * from './event-spec';
 export * from './bundle';
 export * from './stats';
