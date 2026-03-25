@@ -108,6 +108,7 @@ export type Trigger = {
   output?: Record<string, TypeSchema>;
   triggerSpec?: TriggerSpec;
   providers?: TriggerProvider[];
+  filtersSchema?: Record<string, TriggerOutputSchemaField>;
   outputSchema?: Record<string, TriggerOutputSchemaField>;
   transform?: TriggerTransform;
   executionPolicy?: TriggerExecutionPolicy;

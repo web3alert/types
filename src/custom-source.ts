@@ -16,6 +16,7 @@ export type CustomSource = {
   name: string;
   fullname: string;
   public: boolean;
+  createdByAccountId?: string;
   kind: CustomSourceKind;
   endpoint: string;
   meta: CustomSourceMeta;

@@ -41,10 +41,13 @@ export type AccountMeta = {
   nickname: string;
 };
 
+export type AccountTier = 'free' | 'advanced' | 'pro';
+
 export type AccountObject = {
   id: string;
   userId: string;
   createdAt: string;
+  tier?: AccountTier;
   permissions: string[];
   settings?: object;
   currentWorkspaceId: string | null;
@@ -329,6 +332,10 @@ export type SubscriptionMeta = {
 export type SubscriptionObjectRaw = {
   id: string;
   accountId: string;
+  targetWorkspaceFullname?: string;
+  createdByAccountId?: string;
+  sourceProjectFullname?: string;
+  countsTowardsTierQuota?: boolean;
   state: SubscriptionState;
   app: string;
   createdAt: string;
@@ -374,6 +381,10 @@ export type SubscriptionRule = {
 
 export type SubscriptionObject = {
   id: string;
+  targetWorkspaceFullname?: string;
+  createdByAccountId?: string;
+  sourceProjectFullname?: string;
+  countsTowardsTierQuota?: boolean;
   state: SubscriptionState;
   app: string;
   createdAt: string;
@@ -400,6 +411,7 @@ export type Counters = {
 export type Me = {
   id: string;
   newid: string;
+  tier?: AccountTier;
   settings: object;
   meta: AccountMeta;
   
