@@ -9,6 +9,7 @@ export type TriggerSpec =
       network?: string;
       contract?: string;
       event?: string;
+      testInput?: Record<string, unknown>;
     }
   | {
       type: 'substrate_event';
@@ -16,10 +17,12 @@ export type TriggerSpec =
       network?: string;
       pallet?: string;
       event?: string;
+      testInput?: Record<string, unknown>;
     }
   | {
       type: 'timer';
       interval: string;
+      testInput?: Record<string, unknown>;
     };
 
 export type TriggerProviderBase = {
