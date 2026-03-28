@@ -2,6 +2,20 @@ import type { OpenGraphMeta } from './common';
 
 export type CustomSourceKind = 'evm' | 'substrate';
 
+export type CustomSourceRuntimeMetadata = {
+  evm?: {
+    chainId?: number;
+    latestBlock?: number;
+    blockHash?: string;
+    fetchedAt: string;
+  };
+  substrate?: {
+    ss58Prefix?: number;
+    latestBlock?: number;
+    fetchedAt: string;
+  };
+};
+
 export type CustomSourceMeta = {
   title: string;
   description?: string;
@@ -20,6 +34,7 @@ export type CustomSource = {
   kind: CustomSourceKind;
   endpoint: string;
   meta: CustomSourceMeta;
+  runtime?: CustomSourceRuntimeMetadata;
   createdAt: string;
   updatedAt: string;
 };

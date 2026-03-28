@@ -9,6 +9,7 @@ export type TriggerSpec =
       network?: string;
       contract?: string;
       event?: string;
+      abiFragment?: string;
       testInput?: Record<string, unknown>;
     }
   | {
