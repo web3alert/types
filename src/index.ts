@@ -1,5 +1,6 @@
 import { type ExecutionPolicy } from './common';
 import { type TypeSchema } from './type-schema';
+import { type AccountTier } from './account-tier';
 import {
   type Workspace,
   type UserMembership,
@@ -18,6 +19,8 @@ export * from './event-spec';
 export * from './bundle';
 export * from './stats';
 export * from './link';
+export * from './account-tier';
+export * from './subscription-alert-log';
 
 export type ById = {
   id: string;
@@ -39,9 +42,8 @@ export type Values = Record<string, Value>;
 
 export type AccountMeta = {
   nickname: string;
+  avatar?: string;
 };
-
-export type AccountTier = 'free' | 'advanced' | 'pro';
 
 export type AccountObject = {
   id: string;
@@ -426,6 +428,8 @@ export type Me = {
 
 export type EngineWorkspaceObject = {
   id: string;
+  tier?: AccountTier;
+  subscriptionTiers?: Record<string, AccountTier>;
   identities: IdentityObjectRaw[];
   addressbook: AddressbookRecordObjectRaw[];
   subscriptions: SubscriptionObjectRaw[];

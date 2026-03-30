@@ -111,10 +111,10 @@ export type Trigger = {
   defaults?: Event;
   output?: Record<string, TypeSchema>;
   triggerSpec?: TriggerSpec;
-  providers?: TriggerProvider[];
+  providerRefs?: string[];
   filtersSchema?: Record<string, TriggerOutputSchemaField>;
   outputSchema?: Record<string, TriggerOutputSchemaField>;
-  transform?: TriggerTransform;
+  transformRef?: string;
   executionPolicy?: TriggerExecutionPolicy;
   tags: Tags;
   labels: Labels;
@@ -141,4 +141,12 @@ export type TriggerMeta = {
   description?: string;
 };
 
-export type TriggerView = Trigger;
+export type TriggerView = Omit<Trigger, 'providerRefs' | 'transformRef'> & {
+  hasProviders?: boolean;
+  hasTransform?: boolean;
+};
+
+export type TriggerDraftView = TriggerView & {
+  providers?: TriggerProvider[];
+  transform?: TriggerTransform;
+};

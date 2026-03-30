@@ -41,4 +41,6 @@ export type ProjectMeta = {
   cover?: string;
 };
 
-export type ProjectView = Project;
+export type ProjectView = Project & {
+  ownerTitle?: string;
+};

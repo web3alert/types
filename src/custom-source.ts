@@ -39,6 +39,13 @@ export type CustomSource = {
   updatedAt: string;
 };
 
+export type CustomSourceListView = Pick<
+  CustomSource,
+  'workspace' | 'name' | 'fullname' | 'public' | 'kind' | 'meta' | 'createdAt' | 'updatedAt'
+> & {
+  deployerTitle?: string;
+};
+
 export type CustomSourceView = CustomSource;
 
 export type CustomSourceStatusEventType = 'status_changed' | 'error' | 'recovered';
