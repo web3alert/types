@@ -2,6 +2,10 @@ import type { OpenGraphMeta } from './common';
 
 export type CustomSourceKind = 'evm' | 'substrate';
 
+export const DEFAULT_CUSTOM_SOURCE_BLOCK_PROCESSING_CONCURRENCY = 1;
+export const DEFAULT_CUSTOM_SOURCE_MAX_QUEUED_BLOCKS = 10_000;
+export const DEFAULT_CUSTOM_EVM_BATCH_MAX_COUNT = 3;
+
 export type CustomSourceRuntimeMetadata = {
   evm?: {
     chainId?: number;
@@ -33,6 +37,9 @@ export type CustomSource = {
   createdByAccountId?: string;
   kind: CustomSourceKind;
   endpoint: string;
+  batchMaxCount?: number;
+  blockProcessingConcurrency?: number;
+  maxQueuedBlocks?: number;
   meta: CustomSourceMeta;
   runtime?: CustomSourceRuntimeMetadata;
   createdAt: string;

@@ -230,7 +230,7 @@ export type SubscriptionTemplateRuleRaw = {
   topic: string;
   deprecated: boolean;
   event: string;
-  values?: object;
+  inputs?: object;
   policy?: ExecutionPolicy;
   conditions?: ConditionTopLevel;
   requiredValues: string[];
@@ -253,7 +253,7 @@ export type SubscriptionTemplateRule = {
   group: string;
   deprecated: boolean;
   event: RuleEventReference;
-  values?: object;
+  inputs?: object;
   policy?: ExecutionPolicy;
   conditions?: ConditionTopLevel;
   requiredValues: string[];
@@ -275,13 +275,13 @@ export type SubscriptionState = 'on' | 'off' | 'blocked';
 
 export type SubscriptionTemplateReferenceRawLegacy = {
   id: string;
-  values: Values;
+  inputs: Values;
   rules: string[];
 };
 
 export type SubscriptionTemplateReferenceRawUpgraded = {
   id: string;
-  values: Values;
+  inputs: Values;
   topics: string[];
 };
 
@@ -293,7 +293,7 @@ export type SubscriptionTemplateReferenceRawBoth =
 export type SubscriptionRuleRaw = {
   event: string;
   payload?: object;
-  values?: object;
+  inputs?: object;
   policy?: ExecutionPolicy;
   conditions?: ConditionTopLevel;
 };
@@ -368,7 +368,7 @@ export type SubscriptionTemplateReferenceRule = {
 
 export type SubscriptionTemplateReference = {
   id: string;
-  values: Values;
+  inputs: Values;
   groups: SubscriptionTemplateReferenceGroup[];
   topics: string[];
   rules: SubscriptionTemplateReferenceRule[];
@@ -376,7 +376,7 @@ export type SubscriptionTemplateReference = {
 
 export type SubscriptionRule = {
   event: RuleEventReference;
-  values?: object;
+  inputs?: object;
   policy?: ExecutionPolicy;
   conditions?: ConditionTopLevel;
 };

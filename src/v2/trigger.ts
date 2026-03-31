@@ -97,6 +97,7 @@ export type TriggerExecutionPolicy = {
   maxProviderCallsPerRun?: number;
   timeoutMs?: number;
   maxResponseBytes?: number;
+  maxExecutionConcurrency?: number;
 };
 
 export type Trigger = {
@@ -107,7 +108,7 @@ export type Trigger = {
   workspace: string;
   public: boolean;
   backend: TriggerBackend;
-  values: Record<string, TypeSchema>;
+  inputs: Record<string, TypeSchema>;
   defaults?: Event;
   output?: Record<string, TypeSchema>;
   triggerSpec?: TriggerSpec;

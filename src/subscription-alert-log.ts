@@ -12,6 +12,11 @@ export type SubscriptionAlertLogChannel = {
   reasonMessage?: string;
 };
 
+export type SubscriptionAlertLogReplayMatch = {
+  hash?: string | null;
+  index?: number | null;
+};
+
 export type SubscriptionAlertLog = {
   id: string;
   subscriptionId: string;
@@ -23,6 +28,7 @@ export type SubscriptionAlertLog = {
   status: SubscriptionAlertLogStatus;
   testInput?: Record<string, unknown>;
   itemIndex?: number;
+  replayMatch?: SubscriptionAlertLogReplayMatch;
   sourceItemsCount?: number;
   channels: SubscriptionAlertLogChannel[];
   failureReasonCode?: string;

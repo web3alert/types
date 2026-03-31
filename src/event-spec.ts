@@ -49,7 +49,7 @@ export type EventSpec = {
   public: boolean;
   schema: EventSpecParamsSchema;
   payload?: object;
-  values?: Record<string, TypeSchema>;
+  inputs?: Record<string, TypeSchema>;
   defaults?: Event;
   output?: Record<string, TypeSchema>;
   backend?: EventSpecBackend;
@@ -61,7 +61,7 @@ export type EventSpecShort = {
   name: string;
   schema: EventSpecParamsSchema;
   payload?: object;
-  values?: Record<string, TypeSchema>;
+  inputs?: Record<string, TypeSchema>;
   defaults?: Event;
   output?: Record<string, TypeSchema>;
   backend?: EventSpecBackend;
@@ -74,7 +74,7 @@ export type EventSpecLegacy = {
   bundle: string;
   name: string;
   schema: EventSpecParamsSchema;
-  values?: Record<string, TypeSchema>;
+  inputs?: Record<string, TypeSchema>;
   defaults?: Event;
   output?: Record<string, TypeSchema>;
   policy?: ExecutionPolicy;

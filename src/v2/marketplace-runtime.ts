@@ -78,6 +78,7 @@ export type MarketplaceSandboxExecuteRequest = {
   triggerFullname: string;
   triggerRevision?: number;
   sourceEvent: unknown;
+  inputs?: Record<string, unknown>;
   sourceMeta?: {
     subject?: string;
     ts?: string;
