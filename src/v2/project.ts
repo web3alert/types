@@ -43,4 +43,7 @@ export type ProjectMeta = {
 
 export type ProjectView = Project & {
   ownerTitle?: string;
+  triggerLimits?: {
+    maxProvidersPerTrigger: number | null;
+  };
 };
