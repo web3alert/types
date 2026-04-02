@@ -29,6 +29,7 @@ export type TriggerSpec =
 export type TriggerProviderBase = {
   id: string;
   timeoutMs?: number;
+  outputSchema?: Record<string, TriggerOutputSchemaField>;
 };
 
 export type TriggerHttpProvider = TriggerProviderBase & {
@@ -103,6 +104,7 @@ export type TriggerStateWindowProvider = TriggerProviderBase & {
 
 export type TriggerJavascriptProvider = TriggerProviderBase & {
   type: 'javascript';
+  variables?: unknown;
   source: string;
 };
 
