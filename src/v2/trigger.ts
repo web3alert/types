@@ -74,12 +74,46 @@ export type TriggerSubstrateStorageProvider = TriggerProviderBase & {
   block?: unknown;
 };
 
+export type TriggerStateWindowValueType =
+  | 'number'
+  | 'string'
+  | 'boolean'
+  | 'object'
+  | 'array'
+  | 'unknown'
+;
+
+export type TriggerStateWindowAggregate =
+  | 'values'
+  | 'avg'
+  | 'min'
+  | 'max'
+  | 'sum'
+;
+
+export type TriggerStateWindowProvider = TriggerProviderBase & {
+  type: 'state_window';
+  partitionBy?: unknown;
+  dedupeBy: unknown;
+  value: unknown;
+  keepLast: number;
+  valueType?: TriggerStateWindowValueType;
+  aggregate?: TriggerStateWindowAggregate[];
+};
+
+export type TriggerJavascriptProvider = TriggerProviderBase & {
+  type: 'javascript';
+  source: string;
+};
+
 export type TriggerProvider =
   | TriggerHttpProvider
   | TriggerGraphqlProvider
   | TriggerRpcEndpointProvider
   | TriggerRpcSourceProvider
-  | TriggerSubstrateStorageProvider;
+  | TriggerSubstrateStorageProvider
+  | TriggerStateWindowProvider
+  | TriggerJavascriptProvider;
 
 export type TriggerOutputSchemaField = {
   type: TypeSchema;
