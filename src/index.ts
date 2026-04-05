@@ -197,6 +197,8 @@ export type ConditionTopLevel = ConditionAll | ConditionAny | null;
 export type RuleEventReferenceMeta = {
   scope: string;
   name: string;
+  title?: string;
+  description?: string;
 };
 
 export type RuleEventReference = {

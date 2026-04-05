@@ -34,6 +34,7 @@ export type EventSpecBackend =
 export type EventSpecMeta = {
   scope: string;
   name: string;
+  title?: string;
   kind: string;
   tags?: string[];
   labels: Labels;

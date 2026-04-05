@@ -75,6 +75,15 @@ export type TriggerSubstrateStorageProvider = TriggerProviderBase & {
   block?: unknown;
 };
 
+export type TriggerEvmReadProvider = TriggerProviderBase & {
+  type: 'evm_read';
+  source?: string;
+  contract: string;
+  method: string;
+  abiFragment: string;
+  args?: unknown;
+};
+
 export type TriggerStateWindowValueType =
   | 'number'
   | 'string'
@@ -114,6 +123,7 @@ export type TriggerProvider =
   | TriggerRpcEndpointProvider
   | TriggerRpcSourceProvider
   | TriggerSubstrateStorageProvider
+  | TriggerEvmReadProvider
   | TriggerStateWindowProvider
   | TriggerJavascriptProvider;
 
