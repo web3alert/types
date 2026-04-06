@@ -3,6 +3,7 @@ import type {
   TriggerMeta,
   TriggerOutputSchemaField,
   TriggerProvider,
+  TriggerSpec,
   TriggerTransform,
 } from './trigger';
 import type {
@@ -60,8 +61,10 @@ export type MarketplaceRuntimeTriggerUpsert = {
   runtimeProject: string;
   runtimeTrigger: string;
   source: MarketplaceRuntimeSourceBinding;
+  triggerSpec?: TriggerSpec;
   providers: TriggerProvider[];
   transform: TriggerTransform;
+  filtersSchema?: Record<string, TriggerOutputSchemaField>;
   outputSchema?: Record<string, TriggerOutputSchemaField>;
   executionPolicy?: TriggerExecutionPolicy;
   meta: TriggerMeta;
@@ -84,6 +87,7 @@ export type MarketplaceSandboxExecuteRequest = {
     ts?: string;
   };
   source?: MarketplaceRuntimeSourceBinding | null;
+  triggerSpec?: TriggerSpec;
   transform: TriggerTransform;
   providers: TriggerProvider[];
   limits: {
@@ -92,6 +96,7 @@ export type MarketplaceSandboxExecuteRequest = {
     maxResponseBytes: number;
     memoryMb?: number;
   };
+  filtersSchema?: Record<string, TriggerOutputSchemaField>;
   outputSchema?: Record<string, TriggerOutputSchemaField>;
   options?: {
     includeLogs?: boolean;
