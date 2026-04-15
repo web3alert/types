@@ -2,6 +2,42 @@ import type { OpenGraphMeta } from './common';
 
 export type CustomSourceKind = 'evm' | 'substrate';
 
+export type CustomSourceSubstrateExtensionPreset =
+  | 'avail'
+  | 'statemint'
+  | 'statemine';
+
+export type CustomSourceSubstrateSignedExtension = {
+  name: string;
+  extrinsic?: Record<string, string>;
+  payload?: Record<string, string>;
+};
+
+export type CustomSourceSubstrateRpcParam = {
+  name: string;
+  type: string;
+  isOptional?: boolean;
+  isHistoric?: boolean;
+};
+
+export type CustomSourceSubstrateRpcMethod = {
+  name: string;
+  description?: string;
+  params: CustomSourceSubstrateRpcParam[];
+  type: string;
+};
+
+export type CustomSourceSubstrateExtensions = {
+  preset?: CustomSourceSubstrateExtensionPreset | null;
+  signedExtensions?: CustomSourceSubstrateSignedExtension[];
+  types?: Record<string, unknown>;
+  rpc?: Record<string, CustomSourceSubstrateRpcMethod[]>;
+};
+
+export type CustomSourceSubstrateConfig = {
+  extensions?: CustomSourceSubstrateExtensions;
+};
+
 export const DEFAULT_CUSTOM_SOURCE_BLOCK_PROCESSING_CONCURRENCY = 1;
 export const DEFAULT_CUSTOM_SOURCE_MAX_QUEUED_BLOCKS = 10_000;
 export const DEFAULT_CUSTOM_EVM_BATCH_MAX_COUNT = 3;
@@ -37,6 +73,7 @@ export type CustomSource = {
   createdByAccountId?: string;
   kind: CustomSourceKind;
   endpoint: string;
+  substrate?: CustomSourceSubstrateConfig;
   batchMaxCount?: number;
   blockProcessingConcurrency?: number;
   maxQueuedBlocks?: number;

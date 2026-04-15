@@ -21,6 +21,7 @@ export * from './stats';
 export * from './link';
 export * from './account-tier';
 export * from './subscription-alert-log';
+export * from './custom-source-log';
 
 export type ById = {
   id: string;

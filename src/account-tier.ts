@@ -27,6 +27,9 @@ export type AccountTierLimits = {
   notificationRatePerWorkspace: TierRateLimit;
   testRateLimit: TierRateLimit | null;
   alertHistoryRetentionMs: number | null;
+  alertHistoryMaxCount: number | null;
+  customSourceLogRetentionMs: number | null;
+  customSourceLogMaxCount: number | null;
 };
 
 export const DEFAULT_ACCOUNT_TIER: AccountTier = 'free';
@@ -74,6 +77,9 @@ export function getAccountTierLimits(tier: AccountTier): AccountTierLimits {
           interval: 1000,
         },
         alertHistoryRetentionMs: 7 * DAY,
+        alertHistoryMaxCount: 25_000,
+        customSourceLogRetentionMs: 7 * DAY,
+        customSourceLogMaxCount: 25_000,
       };
     case 'pro':
       return {
@@ -106,6 +112,9 @@ export function getAccountTierLimits(tier: AccountTier): AccountTierLimits {
           interval: 1000,
         },
         alertHistoryRetentionMs: 30 * DAY,
+        alertHistoryMaxCount: 100_000,
+        customSourceLogRetentionMs: 30 * DAY,
+        customSourceLogMaxCount: 100_000,
       };
     case 'free':
     default:
@@ -135,6 +144,9 @@ export function getAccountTierLimits(tier: AccountTier): AccountTierLimits {
         },
         testRateLimit: null,
         alertHistoryRetentionMs: null,
+        alertHistoryMaxCount: null,
+        customSourceLogRetentionMs: null,
+        customSourceLogMaxCount: null,
       };
   }
 }
