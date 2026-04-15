@@ -13,6 +13,12 @@ export type TriggerSpec =
       testInput?: Record<string, unknown>;
     }
   | {
+      type: 'evm_transaction';
+      chain?: string;
+      network?: string;
+      testInput?: Record<string, unknown>;
+    }
+  | {
       type: 'substrate_event';
       chain?: string;
       network?: string;
