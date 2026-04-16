@@ -85,6 +85,7 @@ export type TriggerEvmReadProvider = TriggerProviderBase & {
   type: 'evm_read';
   source?: string;
   contract: string;
+  abiContract?: string;
   method: string;
   abiFragment: string;
   args?: unknown;
