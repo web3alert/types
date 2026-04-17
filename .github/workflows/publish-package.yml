@@ -1,3 +1,4 @@
+# npmjs publish workflow
 name: Publish npm package
 
 on:
