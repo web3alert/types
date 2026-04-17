@@ -1,6 +1,6 @@
 {
   "name": "@web3alert/types",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Common type definitions for Web3Alert platform",
   "author": "Web3alert Team <info@web3alert.io>",
   "license": "MIT",
@@ -21,7 +21,7 @@
     "url": "https://github.com/web3alert/types/issues"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://registry.npmjs.org"
   },
   "files": [
     "dist",
