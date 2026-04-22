@@ -59,7 +59,7 @@ export function getAccountTierLimits(tier: AccountTier): AccountTierLimits {
         maxPrivateProjects: 1,
         maxTriggersPerProject: null,
         maxTriggersPerPrivateProject: 50,
-        maxProvidersPerTrigger: 3,
+        maxProvidersPerTrigger: 6,
         notificationRatePerSubscription: {
           bucketSize: 10,
           tokensPerInterval: 1,
@@ -94,7 +94,7 @@ export function getAccountTierLimits(tier: AccountTier): AccountTierLimits {
         maxPrivateProjects: 5,
         maxTriggersPerProject: 200,
         maxTriggersPerPrivateProject: 200,
-        maxProvidersPerTrigger: 5,
+        maxProvidersPerTrigger: 10,
         notificationRatePerSubscription: {
           bucketSize: 20,
           tokensPerInterval: 3,

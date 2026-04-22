@@ -34,6 +34,7 @@ export type TriggerSpec =
 
 export type TriggerProviderBase = {
   id: string;
+  weight?: number;
   timeoutMs?: number;
   outputSchema?: Record<string, TriggerOutputSchemaField>;
 };

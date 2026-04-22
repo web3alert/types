@@ -65,6 +65,11 @@ export type CustomSourceMeta = {
   og?: OpenGraphMeta;
 };
 
+export type CustomSourceLogPolicy = {
+  retentionMs: number;
+  maxCount: number | null;
+};
+
 export type CustomSource = {
   workspace: string;
   name: string;
@@ -77,6 +82,7 @@ export type CustomSource = {
   batchMaxCount?: number;
   blockProcessingConcurrency?: number;
   maxQueuedBlocks?: number;
+  logs?: CustomSourceLogPolicy;
   meta: CustomSourceMeta;
   runtime?: CustomSourceRuntimeMetadata;
   createdAt: string;
