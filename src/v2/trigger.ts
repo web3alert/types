@@ -10,6 +10,8 @@ export type TriggerSpec =
       contract?: string;
       event?: string;
       abiFragment?: string;
+      topicsCount?: number;
+      dataBytes?: number;
       testInput?: Record<string, unknown>;
     }
   | {
