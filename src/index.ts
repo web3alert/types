@@ -230,7 +230,7 @@ export type SubscriptionTemplateRuleRaw = {
   id: string;
   topic: string;
   deprecated: boolean;
-  event: string;
+  trigger: string;
   inputs?: object;
   policy?: ExecutionPolicy;
   conditions?: ConditionTopLevel;
@@ -253,7 +253,7 @@ export type SubscriptionTemplateRule = {
   topic: string;
   group: string;
   deprecated: boolean;
-  event: RuleTriggerReference;
+  trigger: RuleTriggerReference;
   inputs?: object;
   policy?: ExecutionPolicy;
   conditions?: ConditionTopLevel;
@@ -274,22 +274,11 @@ export type SubscriptionTemplateObject = {
 
 export type SubscriptionState = 'on' | 'off' | 'blocked';
 
-export type SubscriptionTemplateReferenceRawLegacy = {
-  id: string;
-  inputs: Values;
-  rules: string[];
-};
-
-export type SubscriptionTemplateReferenceRawUpgraded = {
+export type SubscriptionTemplateReferenceRaw = {
   id: string;
   inputs: Values;
   topics: string[];
 };
-
-export type SubscriptionTemplateReferenceRawBoth =
-  | SubscriptionTemplateReferenceRawLegacy
-  | SubscriptionTemplateReferenceRawUpgraded
-;
 
 export type SubscriptionRuleRaw = {
   trigger: string;
@@ -323,7 +312,7 @@ export type SubscriptionAction = {
 export type SubscriptionReferences = {
   sources: string[];
   apps: string[];
-  bundles: string[];
+  projects: string[];
   triggers: string[];
 };
 
@@ -343,7 +332,7 @@ export type SubscriptionObjectRaw = {
   app: string;
   createdAt: string;
   updatedAt: string;
-  template: SubscriptionTemplateReferenceRawUpgraded | null;
+  template: SubscriptionTemplateReferenceRaw | null;
   rules: SubscriptionRuleRaw[];
   executing?: SubscriptionExecuting | null;
   identities: string[];

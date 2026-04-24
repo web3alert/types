@@ -14,7 +14,7 @@ export type CommonStats = {
 };
 
 export type FilterStats = {
-  event: string;
+  trigger: string;
   param: string;
   regular: number;
   total: number;
@@ -22,6 +22,6 @@ export type FilterStats = {
 
 export type Stats = {
   sources: CommonStats[];
-  events: CommonStats[];
+  triggers: CommonStats[];
   filters: FilterStats[];
 };
