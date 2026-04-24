@@ -9,5 +9,6 @@ export * from './typesz';
 export * from './blueprint';
 export * from './event';
 export * from './trigger';
+export * from './runtime-trigger';
 export * from './action';
 export * from './marketplace-runtime';

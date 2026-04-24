@@ -195,16 +195,16 @@ export type Condition =
 
 export type ConditionTopLevel = ConditionAll | ConditionAny | null;
 
-export type RuleEventReferenceMeta = {
+export type RuleTriggerReferenceMeta = {
   scope: string;
   name: string;
   title?: string;
   description?: string;
 };
 
-export type RuleEventReference = {
+export type RuleTriggerReference = {
   name: string;
-  meta: RuleEventReferenceMeta;
+  meta: RuleTriggerReferenceMeta;
 };
 
 export type SubscriptionTemplateGroupMeta = {
@@ -255,7 +255,7 @@ export type SubscriptionTemplateRule = {
   topic: string;
   group: string;
   deprecated: boolean;
-  event: RuleEventReference;
+  event: RuleTriggerReference;
   inputs?: object;
   policy?: ExecutionPolicy;
   conditions?: ConditionTopLevel;
@@ -294,7 +294,7 @@ export type SubscriptionTemplateReferenceRawBoth =
 ;
 
 export type SubscriptionRuleRaw = {
-  event: string;
+  trigger: string;
   payload?: object;
   inputs?: object;
   policy?: ExecutionPolicy;
@@ -378,7 +378,7 @@ export type SubscriptionTemplateReference = {
 };
 
 export type SubscriptionRule = {
-  event: RuleEventReference;
+  trigger: RuleTriggerReference;
   inputs?: object;
   policy?: ExecutionPolicy;
   conditions?: ConditionTopLevel;
