@@ -326,7 +326,7 @@ export type SubscriptionReferences = {
   sources: string[];
   apps: string[];
   bundles: string[];
-  events: string[];
+  triggers: string[];
 };
 
 export type SubscriptionMeta = {
