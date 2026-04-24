@@ -8,7 +8,6 @@ import type {
 } from './trigger';
 import type {
   ProjectMeta,
-  ProjectPublishState,
   ProjectVisibility,
 } from './project';
 
@@ -45,7 +44,6 @@ export type MarketplaceRuntimeProjectUpsert = {
   projectFullname: string;
   workspace: string;
   visibility: ProjectVisibility;
-  publishState: ProjectPublishState;
   meta: ProjectMeta;
 };
 
