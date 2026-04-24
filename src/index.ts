@@ -198,7 +198,7 @@ export type SubscriptionTemplateRuleRaw = {
 };
 
 export type SubscriptionTemplateObjectRawBody = {
-  app: string;
+  project: string;
   schema: Record<string, TypeSchema>;
   groups: SubscriptionTemplateGroup[];
   topics: SubscriptionTemplateTopic[];
@@ -224,7 +224,7 @@ export type SubscriptionTemplateRule = {
 
 export type SubscriptionTemplateObject = {
   id: string;
-  app: string;
+  project: string;
   schema: Record<string, TypeSchema>;
   groups: SubscriptionTemplateGroup[];
   topics: SubscriptionTemplateTopic[];
@@ -271,7 +271,6 @@ export type SubscriptionAction = {
 
 export type SubscriptionReferences = {
   sources: string[];
-  apps: string[];
   projects: string[];
   triggers: string[];
 };
@@ -289,7 +288,6 @@ export type SubscriptionObjectRaw = {
   sourceProjectFullname?: string;
   countsTowardsTierQuota?: boolean;
   state: SubscriptionState;
-  app: string;
   createdAt: string;
   updatedAt: string;
   template: SubscriptionTemplateReferenceRaw | null;
@@ -338,7 +336,6 @@ export type SubscriptionObject = {
   sourceProjectFullname?: string;
   countsTowardsTierQuota?: boolean;
   state: SubscriptionState;
-  app: string;
   createdAt: string;
   updatedAt: string;
   template: SubscriptionTemplateReference | null;

@@ -4,10 +4,6 @@ import type {
   OpenGraphMeta,
 } from './common';
 
-export type SourceAppAd = Record<string, never>;
-
-export type SourceApps = Record<string, SourceAppAd>;
-
 export type SourceCategory = {
   category: string;
   index: number;
@@ -24,7 +20,6 @@ export type SourceMeta = {
 
 export type Source = {
   name: string;
-  apps: SourceApps;
   categories: SourceCategory[];
   meta: SourceMeta;
   index: number;
@@ -37,7 +32,7 @@ export type SourceVisibility = {
   public?: boolean;
 };
 
-export type SourceSaveParams = Omit<Source, 'apps'>;
+export type SourceSaveParams = Source;
 
 export type SourceListParams = {
   visibility?: SourceVisibility;
@@ -46,9 +41,3 @@ export type SourceListParams = {
 export type SourceListByNamesParams = ByNames;
 
 export type SourceGetParams = { visibility?: SourceVisibility } & ByName;
-
-export type SourceSaveAppParams = {
-  name: string;
-  app: string;
-  ad: SourceAppAd;
-};
