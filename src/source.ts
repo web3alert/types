@@ -4,9 +4,7 @@ import type {
   OpenGraphMeta,
 } from './common';
 
-export type SourceAppAd = {
-  customBundles?: string[];
-};
+export type SourceAppAd = Record<string, never>;
 
 export type SourceApps = Record<string, SourceAppAd>;
 

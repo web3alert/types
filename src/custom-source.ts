@@ -120,10 +120,6 @@ export type CustomSourceStatusEvent = {
   timestamp: string;
 };
 
-export function getCustomSourceStatusBundleName(sourceFullname: string): string {
-  return sourceFullname;
-}
-
 export function getCustomSourceStatusTriggerName(params: {
   fullname: string;
   kind: CustomSourceKind;
