@@ -318,7 +318,7 @@ export type SubscriptionExecuting = Record<string, SubscriptionRuleExecutionStat
 
 export type SubscriptionAction = {
   action: string;
-  values?: Record<string, unknown>;
+  values: Record<string, unknown>;
   overrides?: Event;
 };
 
