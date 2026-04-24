@@ -5,6 +5,7 @@ import {
   type Workspace,
   type UserMembership,
   type Event,
+  type Resource,
 } from './v2';
 
 export * from './v2';
@@ -90,47 +91,6 @@ export type AddressbookRecordObject = {
   type: AddressType;
   address: string;
   alias: string;
-};
-
-export type AppIconsSourceLegacy = {
-  default: string;
-  disabled: string;
-};
-
-export type AppIconsChannelLegacy = {
-  default: string;
-  table: string;
-};
-
-export type AppMetaLegacy = {
-  title: string;
-  icons?: AppIconsSourceLegacy | AppIconsChannelLegacy;
-};
-
-export type AppFeatureLegacy = 'source' | 'channel' | 'custom-identity';
-
-export type AppObjectRawLegacy = {
-  id: string;
-  name: string;
-  url: string;
-  meta: AppMetaLegacy;
-  index: number;
-  features: AppFeatureLegacy[];
-  class: string;
-  permissions: string[];
-  identityRegExp?: string;
-  v2?: {
-    workspace: string;
-    project: string;
-    app: string;
-  };
-};
-
-export type AppObjectLegacy = {
-  id: string;
-  name: string;
-  meta: object;
-  features: AppFeatureLegacy[];
 };
 
 export type TokenType = 'app' | 'account';
@@ -335,7 +295,7 @@ export type SubscriptionObjectRaw = {
   template: SubscriptionTemplateReferenceRaw | null;
   rules: SubscriptionRuleRaw[];
   executing?: SubscriptionExecuting | null;
-  identities: string[];
+  resources: string[];
   actions?: SubscriptionAction[];
   references: SubscriptionReferences;
   meta?: SubscriptionMeta;
@@ -383,7 +343,7 @@ export type SubscriptionObject = {
   updatedAt: string;
   template: SubscriptionTemplateReference | null;
   rules: SubscriptionRule[];
-  identities: string[];
+  resources: string[];
   actions?: SubscriptionAction[];
   references: SubscriptionReferences;
   meta?: SubscriptionMeta;
@@ -410,7 +370,6 @@ export type Me = {
   token: { identity: string };
   workspace: Workspace | null;
   memberships: UserMembership[];
-  identities: IdentityObject[];
   addressbook: AddressbookRecordObject[];
   subscriptions: Record<string, number>;
   counters: Counters;
@@ -420,7 +379,7 @@ export type EngineWorkspaceObject = {
   id: string;
   tier?: AccountTier;
   subscriptionTiers?: Record<string, AccountTier>;
-  identities: IdentityObjectRaw[];
+  resources: Resource[];
   addressbook: AddressbookRecordObjectRaw[];
   subscriptions: SubscriptionObjectRaw[];
 };
