@@ -178,20 +178,13 @@ export type Trigger = {
   meta: TriggerMeta;
 };
 
-export type TriggerBackendLegacy = {
-  type: 'legacy';
-};
-
 export type TriggerBackendSDK = {
   type: 'sdk';
   trigger: string;
   values?: Record<string, unknown>;
 };
 
-export type TriggerBackend =
-  | TriggerBackendLegacy
-  | TriggerBackendSDK
-;
+export type TriggerBackend = TriggerBackendSDK;
 
 export type TriggerMeta = {
   title: string;

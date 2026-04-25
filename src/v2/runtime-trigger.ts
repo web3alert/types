@@ -2,20 +2,13 @@ import type { TypeSchema } from '../type-schema';
 import type { Labels, ExecutionPolicy } from '../common';
 import type { Event } from './event';
 
-export type RuntimeTriggerBackendLegacy = {
-  type: 'legacy';
-};
-
 export type RuntimeTriggerBackendSdk = {
   type: 'sdk';
   trigger?: string;
   staticParams?: Record<string, unknown>;
 };
 
-export type RuntimeTriggerBackend =
-  | RuntimeTriggerBackendLegacy
-  | RuntimeTriggerBackendSdk
-;
+export type RuntimeTriggerBackend = RuntimeTriggerBackendSdk;
 
 export type RuntimeTriggerMeta = {
   scope: string;

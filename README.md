@@ -2,6 +2,14 @@
 
 Common TypeScript type definitions for the Web3Alert platform.
 
+## Technical reference
+
+The current next-generation platform contract is documented in
+[`docs/platform-types.md`](./docs/platform-types.md).
+
+The package no longer documents old event-spec compatibility views as public
+contracts. Migration from production legacy data is a one-time API-side process.
+
 ## Installation
 
 ```bash
@@ -16,7 +24,7 @@ This package provides comprehensive TypeScript type definitions for the Web3Aler
 - **Apps & Triggers** — Event sources and trigger definitions
 - **Actions** — Automated response handlers
 - **Subscriptions** — User notification subscriptions with conditions and policies
-- **Events** — Event specifications and schemas
+- **Events** — Rendered notification payloads and template defaults
 - **Resources & Blueprints** — Infrastructure configuration
 - **Access Control** — User membership and permissions
 
@@ -30,8 +38,6 @@ src/
 ├── state.ts           # State management types
 ├── category.ts        # Category definitions
 ├── source.ts          # Event source types
-├── event-spec.ts      # Event specification types
-├── bundle.ts          # Bundle configuration types
 ├── stats.ts           # Statistics types
 ├── link.ts            # Link types
 └── v2/                # V2 API types
@@ -247,57 +253,17 @@ const resource: Resource = {
 };
 ```
 
-### Event Specifications
+### Trigger Specs
 
 ```typescript
-import { EventSpec, EventSpecBackend, EventSpecMeta } from '@web3alert/types';
+import { TriggerSpec } from '@web3alert/types';
 
-const eventSpec: EventSpec = {
-  name: 'evm.transfer',
-  source: 'ethereum',
-  app: 'app_123',
-  bundle: 'bundle_456',
-  version: '1.0.0',
-  public: true,
-  schema: {
-    address: {},
-    minAmount: {},
-  },
-  backend: { type: 'sdk', trigger: 'evm.transfer.monitor' },
-  policy: { type: 'filter' },
-  meta: {
-    scope: 'EVM',
-    name: 'Transfer',
-    kind: 'monitor',
-    description: 'Monitors ERC20 and native token transfers',
-    labels: {},
-  },
-};
-```
-
-### Bundles
-
-```typescript
-import { Bundle, BundleWithEvents } from '@web3alert/types';
-
-const bundle: BundleWithEvents = {
-  name: 'ethereum-defi',
-  source: 'ethereum',
-  app: 'app_123',
-  version: '2.0.0',
-  events: [
-    {
-      name: 'swap',
-      schema: {},
-      meta: {
-        scope: 'DEX',
-        name: 'Swap',
-        kind: 'event',
-        description: 'DEX swap event',
-        labels: {},
-      },
-    },
-  ],
+const erc20TransferSpec: TriggerSpec = {
+  type: 'evm_log',
+  network: 'common.source.ethereum',
+  event: 'Transfer(address,address,uint256)',
+  topicsCount: 3,
+  dataBytes: 32,
 };
 ```
 
