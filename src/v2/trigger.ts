@@ -5,8 +5,7 @@ import type { Event } from './event';
 export type TriggerSpec =
   | {
       type: 'evm_log';
-      chain?: string;
-      network?: string;
+      dataSource: string;
       contract?: string;
       event?: string;
       abiFragment?: string;
@@ -16,14 +15,12 @@ export type TriggerSpec =
     }
   | {
       type: 'evm_transaction';
-      chain?: string;
-      network?: string;
+      dataSource: string;
       testInput?: Record<string, unknown>;
     }
   | {
       type: 'substrate_event';
-      chain?: string;
-      network?: string;
+      dataSource: string;
       pallet?: string;
       event?: string;
       testInput?: Record<string, unknown>;
@@ -156,6 +153,15 @@ export type TriggerExecutionPolicy = {
   maxExecutionConcurrency?: number;
 };
 
+export type TriggerStatus = 'not_tested' | 'ready' | 'broken';
+
+export type TriggerStatusDetails = {
+  status: TriggerStatus;
+  issue?: string;
+  source?: 'edit' | 'test' | 'runtime' | 'dependency';
+  updatedAt?: string;
+};
+
 export type Trigger = {
   id: string;
   name: string;
@@ -173,6 +179,7 @@ export type Trigger = {
   outputSchema?: Record<string, TriggerOutputSchemaField>;
   transformRef?: string;
   executionPolicy?: TriggerExecutionPolicy;
+  status: TriggerStatusDetails;
   tags: Tags;
   labels: Labels;
   meta: TriggerMeta;
