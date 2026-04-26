@@ -164,6 +164,8 @@ export type TriggerStatusDetails = {
 
 export type Trigger = {
   id: string;
+  createdAt?: string;
+  updatedAt?: string;
   name: string;
   fullname: string;
   project: string;
