@@ -6,7 +6,6 @@ export type WorkspaceMeta = {
 
 export type Workspace = {
   id: string;
-  name: string;
   fullname: string;
   invite: string;
   tags: Tags;
@@ -16,7 +15,6 @@ export type Workspace = {
 
 export type WorkspaceViewPublic = {
   id: string;
-  name: string;
   fullname: string;
   tags: Tags;
   labels: Labels;
@@ -31,7 +29,6 @@ export type WorkspaceView = WorkspaceViewPublic | WorkspaceViewPrivate;
 
 export type WorkspaceViewShort = {
   id: string;
-  name: string;
   fullname: string;
   tags: Tags;
   labels: Labels;

@@ -105,7 +105,6 @@ import { Workspace, Project, WorkspaceMeta } from '@web3alert/types';
 
 const workspace: Workspace = {
   id: 'ws_123',
-  name: 'my-workspace',
   fullname: 'org/my-workspace',
   invite: 'invite_code',
   tags: ['production'],
@@ -277,7 +276,6 @@ const membership: UserMembership = {
   level: 'admin',
   workspace: {
     id: 'ws_123',
-    name: 'my-workspace',
     fullname: 'org/my-workspace',
     tags: [],
     labels: {},

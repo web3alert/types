@@ -79,7 +79,6 @@ Special schema extension:
 ```ts
 type Workspace = {
   id: string;
-  name: string;
   fullname: string;
   invite: string;
   tags: Tags;
