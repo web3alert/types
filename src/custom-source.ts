@@ -77,7 +77,7 @@ export type CustomSource = {
   public: boolean;
   createdByAccountId?: string;
   kind: CustomSourceKind;
-  endpoint: string;
+  endpoints: string[];
   substrate?: CustomSourceSubstrateConfig;
   batchMaxCount?: number;
   blockProcessingConcurrency?: number;
