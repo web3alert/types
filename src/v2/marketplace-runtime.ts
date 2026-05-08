@@ -4,6 +4,7 @@ import type {
   TriggerOutputSchemaField,
   TriggerProvider,
   TriggerSpec,
+  TriggerActivation,
   TriggerTransform,
 } from './trigger';
 import type {
@@ -61,6 +62,7 @@ export type MarketplaceRuntimeTriggerUpsert = {
   source: MarketplaceRuntimeSourceBinding;
   triggerSpec?: TriggerSpec;
   providers: TriggerProvider[];
+  activation?: TriggerActivation | null;
   transform: TriggerTransform;
   filtersSchema?: Record<string, TriggerOutputSchemaField>;
   outputSchema?: Record<string, TriggerOutputSchemaField>;
@@ -86,6 +88,7 @@ export type MarketplaceSandboxExecuteRequest = {
   };
   source?: MarketplaceRuntimeSourceBinding | null;
   triggerSpec?: TriggerSpec;
+  activation?: TriggerActivation | null;
   transform: TriggerTransform;
   providers: TriggerProvider[];
   limits: {

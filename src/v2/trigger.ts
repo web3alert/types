@@ -146,6 +146,11 @@ export type TriggerTransform = {
   humanSource?: string;
 };
 
+export type TriggerActivation = {
+  language: 'javascript';
+  source: string;
+};
+
 export type TriggerExecutionPolicy = {
   maxProviderCallsPerRun?: number;
   timeoutMs?: number;
@@ -179,6 +184,7 @@ export type Trigger = {
   providerRefs?: string[];
   filtersSchema?: Record<string, TriggerOutputSchemaField>;
   outputSchema?: Record<string, TriggerOutputSchemaField>;
+  activation?: TriggerActivation | null;
   transformRef?: string;
   executionPolicy?: TriggerExecutionPolicy;
   status: TriggerStatusDetails;
