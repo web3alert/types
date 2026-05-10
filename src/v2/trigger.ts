@@ -173,6 +173,7 @@ export type Trigger = {
   updatedAt?: string;
   name: string;
   fullname: string;
+  projectId?: string;
   project: string;
   workspace: string;
   public: boolean;

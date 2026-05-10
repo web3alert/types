@@ -21,7 +21,9 @@ export type RuntimeTriggerMeta = {
 };
 
 export type RuntimeTriggerSpec = {
+  id?: string;
   fullname: string;
+  projectId?: string;
   project: string;
   public: boolean;
   filtersSchema: Record<string, TypeSchema>;

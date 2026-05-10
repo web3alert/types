@@ -42,6 +42,7 @@ export type MarketplaceRuntimeSourceBinding =
     };
 
 export type MarketplaceRuntimeProjectUpsert = {
+  projectId?: string;
   projectFullname: string;
   workspace: string;
   visibility: ProjectVisibility;
@@ -49,11 +50,14 @@ export type MarketplaceRuntimeProjectUpsert = {
 };
 
 export type MarketplaceRuntimeProjectRemove = {
+  projectId?: string;
   projectFullname: string;
 };
 
 export type MarketplaceRuntimeTriggerUpsert = {
+  triggerId?: string;
   triggerFullname: string;
+  projectId?: string;
   projectFullname: string;
   workspace: string;
   name: string;
@@ -71,13 +75,16 @@ export type MarketplaceRuntimeTriggerUpsert = {
 };
 
 export type MarketplaceRuntimeTriggerRemove = {
+  triggerId?: string;
   triggerFullname: string;
 };
 
 export type MarketplaceSandboxExecuteRequest = {
   requestId: string;
   workspace: string;
+  projectId?: string;
   projectFullname: string;
+  triggerId?: string;
   triggerFullname: string;
   triggerRevision?: number;
   sourceEvent: unknown;

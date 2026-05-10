@@ -161,6 +161,7 @@ export type RuleTriggerReferenceMeta = {
 };
 
 export type RuleTriggerReference = {
+  id?: string;
   name: string;
   meta: RuleTriggerReferenceMeta;
 };
@@ -190,6 +191,7 @@ export type SubscriptionTemplateRuleRaw = {
   id: string;
   topic: string;
   deprecated: boolean;
+  triggerId?: string;
   trigger: string;
   inputs?: object;
   policy?: ExecutionPolicy;
@@ -198,6 +200,7 @@ export type SubscriptionTemplateRuleRaw = {
 };
 
 export type SubscriptionTemplateObjectRawBody = {
+  projectId?: string;
   project: string;
   schema: Record<string, TypeSchema>;
   groups: SubscriptionTemplateGroup[];
@@ -224,6 +227,7 @@ export type SubscriptionTemplateRule = {
 
 export type SubscriptionTemplateObject = {
   id: string;
+  projectId?: string;
   project: string;
   schema: Record<string, TypeSchema>;
   groups: SubscriptionTemplateGroup[];
@@ -241,6 +245,7 @@ export type SubscriptionTemplateReferenceRaw = {
 };
 
 export type SubscriptionRuleRaw = {
+  triggerId?: string;
   trigger: string;
   payload?: object;
   inputs?: object;
@@ -273,6 +278,8 @@ export type SubscriptionReferences = {
   sources: string[];
   projects: string[];
   triggers: string[];
+  projectIds?: string[];
+  triggerIds?: string[];
 };
 
 export type SubscriptionMeta = {
@@ -285,6 +292,7 @@ export type SubscriptionObjectRaw = {
   accountId: string;
   targetWorkspaceFullname?: string;
   createdByAccountId?: string;
+  sourceProjectId?: string;
   sourceProjectFullname?: string;
   countsTowardsTierQuota?: boolean;
   state: SubscriptionState;
@@ -323,6 +331,7 @@ export type SubscriptionTemplateReference = {
 };
 
 export type SubscriptionRule = {
+  triggerId?: string;
   trigger: RuleTriggerReference;
   inputs?: object;
   policy?: ExecutionPolicy;
@@ -333,6 +342,7 @@ export type SubscriptionObject = {
   id: string;
   targetWorkspaceFullname?: string;
   createdByAccountId?: string;
+  sourceProjectId?: string;
   sourceProjectFullname?: string;
   countsTowardsTierQuota?: boolean;
   state: SubscriptionState;
