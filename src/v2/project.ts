@@ -40,6 +40,7 @@ export type ProjectMeta = {
 export type ProjectView = Project & {
   ownerTitle?: string;
   triggerLimits?: {
+    /** Provider weight budget per trigger. The field name is kept for API compatibility. */
     maxProvidersPerTrigger: number | null;
   };
 };

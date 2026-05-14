@@ -76,7 +76,7 @@ export type IdentityObject = {
   meta: IdentityMeta;
 };
 
-export type AddressType = 'plain' | 'ss58' | 'evm' | 'bitcoin' | 'sui' | 'cosmos';
+export type AddressType = 'plain' | 'ss58' | 'evm' | 'bitcoin' | 'cosmos';
 
 export type AddressbookRecordObjectRaw = {
   id: string;

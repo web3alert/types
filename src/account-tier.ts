@@ -22,6 +22,7 @@ export type AccountTierLimits = {
   maxPrivateProjects: number | null;
   maxTriggersPerProject: number | null;
   maxTriggersPerPrivateProject: number | null;
+  /** Provider weight budget per trigger. The field name is kept for API compatibility. */
   maxProvidersPerTrigger: number | null;
   notificationRatePerSubscription: TierNotificationRateLimit;
   notificationRatePerWorkspace: TierRateLimit;
@@ -94,7 +95,7 @@ export function getAccountTierLimits(tier: AccountTier): AccountTierLimits {
         maxPrivateProjects: 5,
         maxTriggersPerProject: 200,
         maxTriggersPerPrivateProject: 200,
-        maxProvidersPerTrigger: 10,
+        maxProvidersPerTrigger: 20,
         notificationRatePerSubscription: {
           bucketSize: 20,
           tokensPerInterval: 3,

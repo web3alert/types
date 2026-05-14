@@ -95,7 +95,7 @@ const account: AccountObject = {
 };
 
 // Supported address types
-type AddressType = 'plain' | 'ss58' | 'evm' | 'bitcoin' | 'sui' | 'cosmos';
+type AddressType = 'plain' | 'ss58' | 'evm' | 'bitcoin' | 'cosmos';
 ```
 
 ### Workspace & Project
