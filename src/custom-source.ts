@@ -1,6 +1,6 @@
 import type { OpenGraphMeta } from './common';
 
-export type CustomSourceKind = 'evm' | 'substrate';
+export type CustomSourceKind = 'evm' | 'substrate' | 'solana';
 
 export type CustomSourceSubstrateExtensionPreset =
   | 'avail'
@@ -52,6 +52,12 @@ export type CustomSourceRuntimeMetadata = {
   substrate?: {
     ss58Prefix?: number;
     latestBlock?: number;
+    fetchedAt: string;
+  };
+  solana?: {
+    genesisHash?: string;
+    latestBlock?: number;
+    blockHash?: string;
     fetchedAt: string;
   };
 };
