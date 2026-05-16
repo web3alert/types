@@ -102,10 +102,10 @@ export type TriggerEvmReadProvider = TriggerProviderBase & {
 export type TriggerSolanaAccountProvider = TriggerProviderBase & {
   type: 'solana_account';
   source?: string;
-  programId: string;
-  accountName: string;
   account?: string;
-  idl: Record<string, unknown> | string;
+  idl?: Record<string, unknown> | string;
+  programId?: string;
+  accountName?: string;
   pda?: {
     programId?: string;
     seeds: Array<{
