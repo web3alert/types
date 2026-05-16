@@ -207,6 +207,51 @@ export type TriggerMeta = {
   description?: string;
 };
 
+export type TriggerListItemSpec =
+  | {
+      type: 'evm_log';
+      dataSource: string;
+      contract?: string;
+      event?: string;
+      topicsCount?: number;
+      dataBytes?: number;
+    }
+  | {
+      type: 'evm_transaction';
+      dataSource: string;
+    }
+  | {
+      type: 'substrate_event';
+      dataSource: string;
+      pallet?: string;
+      event?: string;
+    }
+  | {
+      type: 'timer';
+      interval: string;
+    };
+
+export type TriggerListItemView = Pick<
+  Trigger,
+  | 'id'
+  | 'createdAt'
+  | 'updatedAt'
+  | 'name'
+  | 'fullname'
+  | 'projectId'
+  | 'project'
+  | 'workspace'
+  | 'public'
+  | 'status'
+  | 'tags'
+  | 'labels'
+  | 'meta'
+> & {
+  triggerSpec?: TriggerListItemSpec;
+  hasProviders?: boolean;
+  hasTransform?: boolean;
+};
+
 export type TriggerView = Omit<Trigger, 'providerRefs' | 'transformRef'> & {
   hasProviders?: boolean;
   hasTransform?: boolean;
