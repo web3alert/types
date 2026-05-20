@@ -26,6 +26,14 @@ export type TriggerSpec =
       testInput?: Record<string, unknown>;
     }
   | {
+      type: 'solana_event';
+      dataSource: string;
+      programId?: string;
+      event?: string;
+      idl?: unknown;
+      testInput?: Record<string, unknown>;
+    }
+  | {
       type: 'timer';
       interval: string;
       testInput?: Record<string, unknown>;
@@ -91,6 +99,22 @@ export type TriggerEvmReadProvider = TriggerProviderBase & {
   args?: unknown;
 };
 
+export type TriggerSolanaAccountProvider = TriggerProviderBase & {
+  type: 'solana_account';
+  source?: string;
+  account?: string;
+  idl?: Record<string, unknown> | string;
+  programId?: string;
+  accountName?: string;
+  pda?: {
+    programId?: string;
+    seeds: Array<{
+      type?: 'literal' | 'string' | 'pubkey' | 'bytes' | 'u8' | 'u16' | 'u32' | 'u64' | 'i64';
+      value: unknown;
+    }>;
+  };
+};
+
 export type TriggerStateWindowValueType =
   | 'number'
   | 'string'
@@ -131,6 +155,7 @@ export type TriggerProvider =
   | TriggerRpcSourceProvider
   | TriggerSubstrateStorageProvider
   | TriggerEvmReadProvider
+  | TriggerSolanaAccountProvider
   | TriggerStateWindowProvider
   | TriggerJavascriptProvider;
 
