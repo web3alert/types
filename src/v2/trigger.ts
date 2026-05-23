@@ -115,6 +115,13 @@ export type TriggerSolanaAccountProvider = TriggerProviderBase & {
   };
 };
 
+export type TriggerTokenMetadataProvider = TriggerProviderBase & {
+  type: 'token_metadata';
+  sourceType: 'evm' | 'substrate' | 'solana';
+  source: string;
+  tokenId: string;
+};
+
 export type TriggerStateWindowValueType =
   | 'number'
   | 'string'
@@ -156,6 +163,7 @@ export type TriggerProvider =
   | TriggerSubstrateStorageProvider
   | TriggerEvmReadProvider
   | TriggerSolanaAccountProvider
+  | TriggerTokenMetadataProvider
   | TriggerStateWindowProvider
   | TriggerJavascriptProvider;
 
