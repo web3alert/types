@@ -8,6 +8,10 @@ export type SubscriptionAlertLogChannel = {
   action: string;
   channel: string;
   ok: boolean;
+  target?: {
+    resourceFullname?: string;
+    title?: string;
+  };
   reasonCode?: string;
   reasonMessage?: string;
 };
@@ -15,6 +19,13 @@ export type SubscriptionAlertLogChannel = {
 export type SubscriptionAlertLogReplayMatch = {
   hash?: string | null;
   index?: number | null;
+};
+
+export type SubscriptionAlertLogConfig = {
+  subscriptionNonce?: string;
+  subscriptionUpdatedAt?: string;
+  ruleIndex?: number;
+  runtimeTriggerRevision?: number;
 };
 
 export type SubscriptionAlertLog = {
@@ -30,6 +41,7 @@ export type SubscriptionAlertLog = {
   itemIndex?: number;
   replayMatch?: SubscriptionAlertLogReplayMatch;
   sourceItemsCount?: number;
+  config?: SubscriptionAlertLogConfig;
   channels: SubscriptionAlertLogChannel[];
   failureReasonCode?: string;
   failureReasonMessage?: string;

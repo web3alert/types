@@ -1,6 +1,6 @@
 {
   "name": "@web3alert/types",
-  "version": "6.7.0",
+  "version": "6.7.1",
   "description": "Common type definitions for Web3Alert platform",
   "author": "Web3alert Team <info@web3alert.io>",
   "license": "MIT",
