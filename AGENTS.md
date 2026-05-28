@@ -29,3 +29,7 @@ Notes:
 - Use imperative mood (e.g., "add", not "added")
 - Keep messages concise and descriptive
 - Use BREAKING CHANGE in the body when applicable
+
+## Versioning
+
+Do not manually change `package.json` or lockfile package versions before committing or pushing. The automatic publisher updates the package version from the committed changes.
