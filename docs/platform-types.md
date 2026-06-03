@@ -261,7 +261,6 @@ type Trigger = {
   };
   inputs: Record<string, TypeSchema>;
   defaults?: Event;
-  output?: Record<string, TypeSchema>;
   triggerSpec?: TriggerSpec;
   providerRefs?: string[];
   filtersSchema?: Record<string, TriggerOutputSchemaField>;
@@ -351,7 +350,7 @@ type RuntimeTriggerSpec = {
   payload?: object;
   inputs?: Record<string, TypeSchema>;
   defaults?: Event;
-  output?: Record<string, TypeSchema>;
+  outputSchema?: Record<string, TriggerOutputSchemaField>;
   backend?: {
     type: 'sdk';
     trigger?: string;

@@ -1,6 +1,7 @@
 import type { TypeSchema } from '../type-schema';
 import type { Labels, ExecutionPolicy } from '../common';
 import type { Event } from './event';
+import type { TriggerOutputSchemaField } from './trigger';
 
 export type RuntimeTriggerBackendSdk = {
   type: 'sdk';
@@ -30,7 +31,7 @@ export type RuntimeTriggerSpec = {
   payload?: object;
   inputs?: Record<string, TypeSchema>;
   defaults?: Event;
-  output?: Record<string, TypeSchema>;
+  outputSchema?: Record<string, TriggerOutputSchemaField>;
   backend?: RuntimeTriggerBackend;
   policy?: ExecutionPolicy;
   meta: RuntimeTriggerMeta;

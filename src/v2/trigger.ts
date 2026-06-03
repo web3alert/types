@@ -213,7 +213,6 @@ export type Trigger = {
   backend: TriggerBackend;
   inputs: Record<string, TypeSchema>;
   defaults?: Event;
-  output?: Record<string, TypeSchema>;
   triggerSpec?: TriggerSpec;
   providerRefs?: string[];
   filtersSchema?: Record<string, TriggerOutputSchemaField>;
