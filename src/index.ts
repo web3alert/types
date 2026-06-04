@@ -297,6 +297,8 @@ export type SubscriptionSourcePressureDetails = {
   triggerFullname: string;
   sourceFullname?: string;
   issue?: string;
+  runtimeTaskKeys?: string[];
+  runtimeTaskSubscribers?: string[];
   metrics?: Record<string, unknown>;
   limits?: Record<string, unknown>;
   updatedAt?: string;
