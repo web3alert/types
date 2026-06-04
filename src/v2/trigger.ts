@@ -191,11 +191,32 @@ export type TriggerExecutionPolicy = {
   maxExecutionConcurrency?: number;
 };
 
-export type TriggerStatus = 'not_tested' | 'ready' | 'broken';
+export type TriggerStatus =
+  | 'not_tested'
+  | 'ready'
+  | 'warning'
+  | 'limited'
+  | 'blocked'
+  | 'broken'
+;
+
+export type TriggerStatusReasonCode =
+  | 'trigger.output_rate_limit'
+  | 'trigger.publish_backlog'
+  | 'trigger.source_lag_storm'
+  | 'trigger.source_emission_limit'
+  | 'trigger.execution_queue_limit'
+  | 'trigger.runtime_error'
+  | 'trigger.missing_source_filters'
+  | 'trigger.source_filter_ineffective'
+;
 
 export type TriggerStatusDetails = {
   status: TriggerStatus;
   issue?: string;
+  reasonCode?: TriggerStatusReasonCode;
+  metrics?: Record<string, unknown>;
+  limits?: Record<string, unknown>;
   source?: 'edit' | 'test' | 'runtime' | 'dependency';
   updatedAt?: string;
 };
