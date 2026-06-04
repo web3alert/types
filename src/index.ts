@@ -282,9 +282,30 @@ export type SubscriptionReferences = {
   triggerIds?: string[];
 };
 
+export type SubscriptionSourcePressureStatus = 'limited' | 'blocked';
+
+export type SubscriptionSourcePressureReasonCode =
+  | 'source_lag_storm'
+  | 'trigger_source_emission_limit'
+  | 'missing_source_filters'
+  | 'source_filter_ineffective'
+;
+
+export type SubscriptionSourcePressureDetails = {
+  status: SubscriptionSourcePressureStatus;
+  reasonCode: SubscriptionSourcePressureReasonCode;
+  triggerFullname: string;
+  sourceFullname?: string;
+  issue?: string;
+  metrics?: Record<string, unknown>;
+  limits?: Record<string, unknown>;
+  updatedAt?: string;
+};
+
 export type SubscriptionMeta = {
   title?: string;
   issue?: string;
+  sourcePressure?: SubscriptionSourcePressureDetails;
 };
 
 export type SubscriptionObjectRaw = {
