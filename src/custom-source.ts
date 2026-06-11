@@ -1,6 +1,6 @@
 import type { OpenGraphMeta } from './common';
 
-export type CustomSourceKind = 'evm' | 'substrate' | 'solana';
+export type CustomSourceKind = 'evm' | 'substrate' | 'solana' | 'hypercore';
 
 export type CustomSourceSubstrateExtensionPreset =
   | 'avail'
@@ -42,6 +42,12 @@ export const DEFAULT_CUSTOM_SOURCE_BLOCK_PROCESSING_CONCURRENCY = 1;
 export const DEFAULT_CUSTOM_SOURCE_MAX_QUEUED_BLOCKS = 10_000;
 export const DEFAULT_CUSTOM_EVM_BATCH_MAX_COUNT = 3;
 
+// HyperCore produces ~15-20 heights per second, so its defaults must be far
+// more aggressive than other kinds to keep up with the chain.
+export const DEFAULT_CUSTOM_HYPERCORE_BATCH_MAX_COUNT = 25;
+export const DEFAULT_CUSTOM_HYPERCORE_BLOCK_PROCESSING_CONCURRENCY = 4;
+export const DEFAULT_CUSTOM_HYPERCORE_MAX_QUEUED_BLOCKS = 50_000;
+
 export type CustomSourceRuntimeMetadata = {
   evm?: {
     chainId?: number;
@@ -58,6 +64,10 @@ export type CustomSourceRuntimeMetadata = {
     genesisHash?: string;
     latestBlock?: number;
     blockHash?: string;
+    fetchedAt: string;
+  };
+  hypercore?: {
+    latestBlock?: number;
     fetchedAt: string;
   };
 };
