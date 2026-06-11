@@ -34,6 +34,16 @@ export type TriggerSpec =
       testInput?: Record<string, unknown>;
     }
   | {
+      type: 'hypercore_action';
+      dataSource: string;
+      actionType?: string;
+      user?: string;
+      coin?: string;
+      vault?: string;
+      validator?: string;
+      testInput?: Record<string, unknown>;
+    }
+  | {
       type: 'timer';
       interval: string;
       testInput?: Record<string, unknown>;
