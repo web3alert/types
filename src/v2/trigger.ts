@@ -59,10 +59,43 @@ export type TriggerSpec =
       testInput?: Record<string, unknown>;
     };
 
+export type TriggerProviderRetryOn =
+  | 'http_error'
+  | 'empty_array'
+  | 'missing_path'
+;
+
+export type TriggerProviderRetryBackoff =
+  | 'fixed'
+  | 'linear'
+  | 'exponential'
+;
+
+export type TriggerProviderRetryUntil = {
+  path: string;
+  equals?: unknown;
+};
+
+// Non-blocking readiness polling for providers that may respond before an
+// external indexer has caught up. A not-ready result parks the execution and
+// requeues it after the computed delay instead of holding a worker.
+export type TriggerProviderRetryPolicy = {
+  attempts: number;
+  delayMs: number;
+  backoff?: TriggerProviderRetryBackoff;
+  maxDelayMs?: number;
+  maxElapsedMs?: number;
+  retryOn?: TriggerProviderRetryOn[];
+  until?: TriggerProviderRetryUntil;
+  onExhausted?: 'continue' | 'fail';
+};
+
 export type TriggerProviderBase = {
   id: string;
   weight?: number;
   timeoutMs?: number;
+  optional?: boolean;
+  retry?: TriggerProviderRetryPolicy;
   outputSchema?: Record<string, TriggerOutputSchemaField>;
 };
 
