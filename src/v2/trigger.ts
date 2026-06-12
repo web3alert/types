@@ -36,11 +36,21 @@ export type TriggerSpec =
   | {
       type: 'hypercore_action';
       dataSource: string;
+      // Which source item kind the trigger consumes; defaults to 'action'.
+      itemKind?: 'action' | 'orderStatus' | 'fill';
+      // Required for the 'action' item kind.
       actionType?: string;
       user?: string;
       coin?: string;
       vault?: string;
       validator?: string;
+      // orderStatus filters.
+      status?: string;
+      side?: string;
+      // fill filters.
+      dir?: string;
+      liquidated?: boolean;
+      liquidatedUser?: string;
       testInput?: Record<string, unknown>;
     }
   | {
