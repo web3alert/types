@@ -104,6 +104,7 @@ export type TriggerHttpProvider = TriggerProviderBase & {
   url: string;
   method?: 'GET' | 'POST';
   headers?: Record<string, string>;
+  pathParams?: Record<string, unknown>;
   queryParams?: Record<string, unknown>;
   body?: unknown;
 };
