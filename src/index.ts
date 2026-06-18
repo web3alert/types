@@ -195,6 +195,7 @@ export type SubscriptionTemplateRuleRaw = {
   trigger: string;
   inputs?: object;
   policy?: ExecutionPolicy;
+  delivery?: SubscriptionRuleDelivery;
   conditions?: ConditionTopLevel;
   requiredValues: string[];
 };
@@ -219,6 +220,7 @@ export type SubscriptionTemplateRule = {
   trigger: RuleTriggerReference;
   inputs?: object;
   policy?: ExecutionPolicy;
+  delivery?: SubscriptionRuleDelivery;
   conditions?: ConditionTopLevel;
   requiredValues: string[];
   selectedByDefault: boolean;
@@ -250,7 +252,15 @@ export type SubscriptionRuleRaw = {
   payload?: object;
   inputs?: object;
   policy?: ExecutionPolicy;
+  delivery?: SubscriptionRuleDelivery;
   conditions?: ConditionTopLevel;
+};
+
+export type SubscriptionRuleDeliveryMode = 'continuous' | 'once' | 'once_per_key';
+
+export type SubscriptionRuleDelivery = {
+  mode: SubscriptionRuleDeliveryMode;
+  keyPath?: string;
 };
 
 export type SubscriptionRuleExecutionState = {
@@ -358,6 +368,7 @@ export type SubscriptionRule = {
   trigger: RuleTriggerReference;
   inputs?: object;
   policy?: ExecutionPolicy;
+  delivery?: SubscriptionRuleDelivery;
   conditions?: ConditionTopLevel;
 };
 
