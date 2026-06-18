@@ -90,11 +90,59 @@ export type TriggerProviderRetryPolicy = {
   onExhausted?: 'continue' | 'fail';
 };
 
+export type TriggerProviderRunConditionSelect = {
+  param: string;
+  condition: TriggerProviderRunCondition;
+};
+
+export type TriggerProviderRunConditionValue = {
+  op: string;
+  value: unknown;
+};
+
+export type TriggerProviderRunConditionSelectValue = {
+  param: string;
+  op: string;
+  value: unknown;
+};
+
+export type TriggerProviderRunConditionContains = {
+  contains: TriggerProviderRunCondition;
+};
+
+export type TriggerProviderRunConditionAll = {
+  all: TriggerProviderRunCondition[];
+};
+
+export type TriggerProviderRunConditionAny = {
+  any: TriggerProviderRunCondition[];
+};
+
+export type TriggerProviderRunCondition =
+  | TriggerProviderRunConditionSelect
+  | TriggerProviderRunConditionValue
+  | TriggerProviderRunConditionSelectValue
+  | TriggerProviderRunConditionContains
+  | TriggerProviderRunConditionAll
+  | TriggerProviderRunConditionAny
+;
+
+export type TriggerProviderRunIf = TriggerProviderRunConditionAll | TriggerProviderRunConditionAny | null;
+
+export type TriggerProviderCachePolicy = {
+  namespace: string;
+  key: unknown;
+  ttlMs?: number;
+  emptyTtlMs?: number;
+};
+
 export type TriggerProviderBase = {
   id: string;
   weight?: number;
   timeoutMs?: number;
   optional?: boolean;
+  runIf?: TriggerProviderRunIf;
+  cache?: TriggerProviderCachePolicy;
   retry?: TriggerProviderRetryPolicy;
   outputSchema?: Record<string, TriggerOutputSchemaField>;
 };
