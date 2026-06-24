@@ -2,10 +2,36 @@ import type { TypeSchema } from '../type-schema';
 import type { Tags, Labels } from '../common';
 import type { Event } from './event';
 
+export type TriggerTypesRefSource = {
+  type: 'source';
+  source: string;
+};
+
+export type TriggerTypesRefApi = {
+  type: 'api';
+  url: string;
+  method?: 'GET' | 'POST';
+  headers?: Record<string, string>;
+  body?: unknown;
+};
+
+export type TriggerTypesRefInline = {
+  type: 'inline';
+  schemas: Record<string, TypeSchema>;
+};
+
+export type TriggerTypesRef =
+  | string
+  | TriggerTypesRefSource
+  | TriggerTypesRefApi
+  | TriggerTypesRefInline
+;
+
 export type TriggerSpec =
   | {
       type: 'evm_log';
       dataSource: string;
+      typesRef?: TriggerTypesRef;
       contract?: string;
       event?: string;
       abiFragment?: string;
@@ -16,11 +42,13 @@ export type TriggerSpec =
   | {
       type: 'evm_transaction';
       dataSource: string;
+      typesRef?: TriggerTypesRef;
       testInput?: Record<string, unknown>;
     }
   | {
       type: 'substrate_event';
       dataSource: string;
+      typesRef?: TriggerTypesRef;
       pallet?: string;
       event?: string;
       testInput?: Record<string, unknown>;
@@ -28,6 +56,7 @@ export type TriggerSpec =
   | {
       type: 'solana_event';
       dataSource: string;
+      typesRef?: TriggerTypesRef;
       programId?: string;
       event?: string;
       idl?: unknown;
@@ -36,6 +65,7 @@ export type TriggerSpec =
   | {
       type: 'hypercore_action';
       dataSource: string;
+      typesRef?: TriggerTypesRef;
       // Which source item kind the trigger consumes; defaults to 'action'.
       itemKind?: 'action' | 'orderStatus' | 'fill';
       // Required for the 'action' item kind.
@@ -55,6 +85,7 @@ export type TriggerSpec =
     }
   | {
       type: 'timer';
+      typesRef?: TriggerTypesRef;
       interval: string;
       testInput?: Record<string, unknown>;
     };
