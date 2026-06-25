@@ -74,6 +74,32 @@ Special schema extension:
 
 `balance` values are represented as strings in raw output. Static `decimals` allows pre-filter conversion.
 
+Cascade metadata describes how UI should pick one primitive value through dependent lookups. It does
+not change the saved condition shape:
+
+```json
+{
+  "eventSlug": {
+    "type": "string",
+    "io.ryabina.notify": {
+      "type": "cascade",
+      "steps": [
+        { "id": "series", "label": "Series", "lookupRef": "ActiveSeriesSlug" },
+        {
+          "id": "event",
+          "label": "Event",
+          "lookupRef": "ActiveEventSlug",
+          "dependsOn": { "series": "$series" }
+        }
+      ]
+    }
+  }
+}
+```
+
+If the user picks an event, the subscription still stores a regular condition for
+`eventSlug` with the selected string value.
+
 ## Workspace
 
 ```ts
@@ -277,6 +303,26 @@ type Trigger = {
 ```
 
 `backend.type` is always `sdk` in the next model.
+
+`triggerSpec.typesRef` can override where the subscription UI loads reusable type schemas:
+
+```ts
+type TriggerTypesRef =
+  | { type: 'source'; source: string }
+  | {
+      type: 'api';
+      url: string;
+      lookupUrl?: string;
+      method?: 'GET' | 'POST';
+      headers?: Record<string, string>;
+      body?: unknown;
+    }
+  | { type: 'inline'; schemas: Record<string, TypeSchema> };
+```
+
+When `typesRef` is omitted, the UI keeps the legacy behavior: trigger-scoped types first, then
+source/project fallback where available. `api.url` returns the type catalog; optional `api.lookupUrl`
+returns dynamic lookup options for metadata such as cascade controls.
 
 ### TriggerSpec
 
