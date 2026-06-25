@@ -9,7 +9,8 @@ export type TriggerTypesRefSource = {
 
 export type TriggerTypesRefApi = {
   type: 'api';
-  url: string;
+  baseUrl?: string;
+  url?: string;
   lookupUrl?: string;
   method?: 'GET' | 'POST';
   headers?: Record<string, string>;

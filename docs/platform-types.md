@@ -311,7 +311,8 @@ type TriggerTypesRef =
   | { type: 'source'; source: string }
   | {
       type: 'api';
-      url: string;
+      baseUrl?: string;
+      url?: string;
       lookupUrl?: string;
       method?: 'GET' | 'POST';
       headers?: Record<string, string>;
@@ -321,8 +322,10 @@ type TriggerTypesRef =
 ```
 
 When `typesRef` is omitted, the UI keeps the legacy behavior: trigger-scoped types first, then
-source/project fallback where available. `api.url` returns the type catalog; optional `api.lookupUrl`
-returns dynamic lookup options for metadata such as cascade controls.
+source/project fallback where available. For API catalogs, prefer `api.baseUrl`: the platform
+loads the type catalog from `baseUrl + "/catalog"` and dynamic lookup options from
+`baseUrl + "/lookup"`. Legacy `api.url` and `api.lookupUrl` are still accepted for existing
+triggers that store the two endpoints separately.
 
 ### TriggerSpec
 
