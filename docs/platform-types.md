@@ -74,6 +74,22 @@ Special schema extension:
 
 `balance` values are represented as strings in raw output. Static `decimals` allows pre-filter conversion.
 
+Finite selectable values should be modeled as a primitive schema with UI enum metadata:
+
+```json
+{
+  "type": "string",
+  "web3alert.ui": {
+    "type": "enum",
+    "enum": ["buy", "sell"],
+    "enumNames": ["Buy", "Sell"]
+  }
+}
+```
+
+Root-level `enum` and `enumNames` are legacy input formats; new trigger and type schemas should put enum
+metadata under `web3alert.ui`.
+
 Cascade metadata describes how UI should pick one primitive value through dependent lookups. It does
 not change the saved condition shape:
 
