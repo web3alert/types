@@ -65,7 +65,7 @@ Special schema extension:
 ```json
 {
   "type": "string",
-  "io.ryabina.notify": {
+  "web3alert.ui": {
     "type": "balance",
     "decimals": 18
   }
@@ -81,7 +81,7 @@ not change the saved condition shape:
 {
   "eventSlug": {
     "type": "string",
-    "io.ryabina.notify": {
+    "web3alert.ui": {
       "type": "cascade",
       "steps": [
         { "id": "series", "label": "Series", "lookupRef": "ActiveSeriesSlug" },
