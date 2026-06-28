@@ -55,10 +55,17 @@ type Event = {
   cover?: string | null;
   avatar?: string | null;
   links?: { title: string; url: string }[];
+  delivery?: {
+    mode: 'continuous' | 'once' | 'once_per_key';
+    keyPath?: string;
+  };
 };
 ```
 
 `TypeSchema` is used for trigger inputs, filter schemas, output schemas, action values, and template schemas.
+`Event.delivery` is a trigger default used by subscription authoring UIs to preselect the delivery periodicity for new rules.
+If it is omitted, new subscriptions start with continuous delivery (`Every match`). Runtime delivery behavior is still stored on
+the subscription rule as `rule.delivery`.
 
 Special schema extension:
 
