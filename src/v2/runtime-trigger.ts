@@ -7,6 +7,12 @@ export type RuntimeTriggerBackendSdk = {
   type: 'sdk';
   trigger?: string;
   staticParams?: Record<string, unknown>;
+  bindings?: Array<{
+    id: string;
+    dataSource: string;
+    trigger: string;
+    staticParams?: Record<string, unknown>;
+  }>;
 };
 
 export type RuntimeTriggerBackend = RuntimeTriggerBackendSdk;

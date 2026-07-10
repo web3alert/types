@@ -29,18 +29,38 @@ export type TriggerTypesRef =
   | TriggerTypesRefInline
 ;
 
+export type TriggerSourceBinding = {
+  dataSource: string;
+  contract?: string;
+  testInput?: Record<string, unknown>;
+};
+
+type TriggerEvmLogSpecBase = {
+  type: 'evm_log';
+  typesRef?: TriggerTypesRef;
+  event?: string;
+  abiFragment?: string;
+  topicsCount?: number;
+  dataBytes?: number;
+};
+
+export type TriggerEvmLogSingleSourceSpec = TriggerEvmLogSpecBase & {
+  dataSource: string;
+  sourceBindings?: never;
+  contract?: string;
+  testInput?: Record<string, unknown>;
+};
+
+export type TriggerEvmLogMultiSourceSpec = TriggerEvmLogSpecBase & {
+  dataSource?: never;
+  sourceBindings: TriggerSourceBinding[];
+  contract?: never;
+  testInput?: never;
+};
+
 export type TriggerSpec =
-  | {
-      type: 'evm_log';
-      dataSource: string;
-      typesRef?: TriggerTypesRef;
-      contract?: string;
-      event?: string;
-      abiFragment?: string;
-      topicsCount?: number;
-      dataBytes?: number;
-      testInput?: Record<string, unknown>;
-    }
+  | TriggerEvmLogSingleSourceSpec
+  | TriggerEvmLogMultiSourceSpec
   | {
       type: 'evm_transaction';
       dataSource: string;
@@ -354,6 +374,14 @@ export type TriggerStatusDetails = {
   limits?: Record<string, unknown>;
   source?: 'edit' | 'test' | 'runtime' | 'dependency';
   updatedAt?: string;
+  bindings?: Array<{
+    dataSource: string;
+    status: TriggerStatus;
+    issue?: string;
+    reasonCode?: TriggerStatusReasonCode;
+    metrics?: Record<string, unknown>;
+    updatedAt?: string;
+  }>;
 };
 
 export type Trigger = {
@@ -398,7 +426,8 @@ export type TriggerMeta = {
 export type TriggerListItemSpec =
   | {
       type: 'evm_log';
-      dataSource: string;
+      dataSource?: string;
+      sourceBindings?: TriggerSourceBinding[];
       contract?: string;
       event?: string;
       topicsCount?: number;

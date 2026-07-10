@@ -41,6 +41,14 @@ export type MarketplaceRuntimeSourceBinding =
       interval: string;
     };
 
+export type MarketplaceRuntimeTriggerBinding = {
+  id: string;
+  dataSource: string;
+  runtimeTrigger: string;
+  source: MarketplaceRuntimeSourceBinding;
+  title?: string;
+};
+
 export type MarketplaceRuntimeProjectUpsert = {
   projectId?: string;
   projectFullname: string;
@@ -54,7 +62,7 @@ export type MarketplaceRuntimeProjectRemove = {
   projectFullname: string;
 };
 
-export type MarketplaceRuntimeTriggerUpsert = {
+type MarketplaceRuntimeTriggerUpsertBase = {
   triggerId?: string;
   triggerFullname: string;
   projectId?: string;
@@ -63,7 +71,6 @@ export type MarketplaceRuntimeTriggerUpsert = {
   name: string;
   runtimeProject: string;
   runtimeTrigger: string;
-  source: MarketplaceRuntimeSourceBinding;
   triggerSpec?: TriggerSpec;
   providers: TriggerProvider[];
   activation?: TriggerActivation | null;
@@ -73,6 +80,17 @@ export type MarketplaceRuntimeTriggerUpsert = {
   executionPolicy?: TriggerExecutionPolicy;
   meta: TriggerMeta;
 };
+
+export type MarketplaceRuntimeTriggerUpsert = MarketplaceRuntimeTriggerUpsertBase & (
+  | {
+      source: MarketplaceRuntimeSourceBinding;
+      bindings?: never;
+    }
+  | {
+      source?: never;
+      bindings: MarketplaceRuntimeTriggerBinding[];
+    }
+);
 
 export type MarketplaceRuntimeTriggerRemove = {
   triggerId?: string;
