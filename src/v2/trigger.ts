@@ -273,7 +273,7 @@ export type TriggerSolanaAccountProvider = TriggerProviderBase & {
 export type TriggerTokenMetadataProvider = TriggerProviderBase & {
   type: 'token_metadata';
   sourceType: 'evm' | 'substrate' | 'solana';
-  source: string;
+  source?: string;
   tokenId: string;
 };
 
