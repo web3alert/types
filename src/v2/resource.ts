@@ -1,4 +1,17 @@
 import type { Tags, Labels } from '../common';
+import type { TelegramTargetKind } from '../telegram';
+
+export type TelegramResourceDestinationSummary = {
+  service: 'telegram';
+  title: string;
+  kind?: TelegramTargetKind;
+  topic?: {
+    messageThreadId: number;
+    title?: string;
+  };
+};
+
+export type ResourceDestinationSummary = TelegramResourceDestinationSummary;
 
 export type Resource = {
   id: string;
@@ -52,6 +65,7 @@ export type ResourceViewPrivate = {
   tags: Tags;
   labels: Labels;
   meta?: ResourceMeta;
+  destinationSummary?: ResourceDestinationSummary;
 };
 
 export type ResourceView = ResourceViewPublic | ResourceViewPrivate;

@@ -26,12 +26,21 @@ test('accepts channel and forum topic targets', () => {
     title: 'Protocol alerts',
     kind: 'supergroup',
     messageThreadId: 42,
+    topicTitle: 'Transfers',
   }), true);
   assert.equal(isTelegramTarget({
     status: 'ready',
     id: '-1009876543210',
     title: 'Announcements',
     kind: 'channel',
+  }), true);
+  assert.equal(isTelegramTarget({
+    status: 'ready',
+    id: '-1001234567890',
+    title: 'Protocol alerts',
+    kind: 'supergroup',
+    messageThreadId: 42,
+    topicTitle: 'x'.repeat(128),
   }), true);
 });
 
@@ -48,6 +57,61 @@ test('rejects malformed Telegram targets', () => {
     { status: 'ready', id: '-1001', title: 'Alerts', messageThreadId: null },
     { status: 'ready', id: '-1001', title: 'Alerts', messageThreadId: 0 },
     { status: 'ready', id: '-1001', title: 'Alerts', messageThreadId: 1.5 },
+    {
+      status: 'ready',
+      id: '-1001',
+      title: 'Alerts',
+      kind: 'supergroup',
+      messageThreadId: 42,
+      topicTitle: '',
+    },
+    {
+      status: 'ready',
+      id: '-1001',
+      title: 'Alerts',
+      kind: 'supergroup',
+      messageThreadId: 42,
+      topicTitle: ' Transfers',
+    },
+    {
+      status: 'ready',
+      id: '-1001',
+      title: 'Alerts',
+      kind: 'supergroup',
+      messageThreadId: 42,
+      topicTitle: 'Transfers ',
+    },
+    {
+      status: 'ready',
+      id: '-1001',
+      title: 'Alerts',
+      kind: 'supergroup',
+      messageThreadId: 42,
+      topicTitle: 'x'.repeat(129),
+    },
+    {
+      status: 'ready',
+      id: '-1001',
+      title: 'Alerts',
+      kind: 'supergroup',
+      messageThreadId: 42,
+      topicTitle: 42,
+    },
+    {
+      status: 'ready',
+      id: '-1001',
+      title: 'Alerts',
+      kind: 'channel',
+      messageThreadId: 42,
+      topicTitle: 'Transfers',
+    },
+    {
+      status: 'ready',
+      id: '-1001',
+      title: 'Alerts',
+      kind: 'supergroup',
+      topicTitle: 'Transfers',
+    },
   ]) {
     assert.equal(isTelegramTarget(value), false, JSON.stringify(value));
   }
