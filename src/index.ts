@@ -18,6 +18,7 @@ export * from './source';
 export * from './custom-source';
 export * from './stats';
 export * from './link';
+export * from './telegram';
 export * from './account-tier';
 export * from './subscription-alert-log';
 export * from './custom-source-log';

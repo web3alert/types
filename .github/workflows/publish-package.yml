@@ -8,8 +8,10 @@ on:
       - master
     paths:
       - src/**
+      - test/**
       - package.json
       - package-lock.json
+      - .github/workflows/publish-package.yml
 
 permissions:
   contents: write
@@ -38,6 +40,9 @@ jobs:
           else
             npm install
           fi
+
+      - name: Test
+        run: npm test
 
       - name: Resolve release
         id: release
