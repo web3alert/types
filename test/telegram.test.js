@@ -27,6 +27,7 @@ test('accepts channel and forum topic targets', () => {
     kind: 'supergroup',
     messageThreadId: 42,
     topicTitle: 'Transfers',
+    topicLabel: 'My alerts',
   }), true);
   assert.equal(isTelegramTarget({
     status: 'ready',
@@ -41,6 +42,7 @@ test('accepts channel and forum topic targets', () => {
     kind: 'supergroup',
     messageThreadId: 42,
     topicTitle: 'x'.repeat(128),
+    topicLabel: 'y'.repeat(128),
   }), true);
 });
 
@@ -111,6 +113,61 @@ test('rejects malformed Telegram targets', () => {
       title: 'Alerts',
       kind: 'supergroup',
       topicTitle: 'Transfers',
+    },
+    {
+      status: 'ready',
+      id: '-1001',
+      title: 'Alerts',
+      kind: 'supergroup',
+      messageThreadId: 42,
+      topicLabel: '',
+    },
+    {
+      status: 'ready',
+      id: '-1001',
+      title: 'Alerts',
+      kind: 'supergroup',
+      messageThreadId: 42,
+      topicLabel: ' My alerts',
+    },
+    {
+      status: 'ready',
+      id: '-1001',
+      title: 'Alerts',
+      kind: 'supergroup',
+      messageThreadId: 42,
+      topicLabel: 'My alerts ',
+    },
+    {
+      status: 'ready',
+      id: '-1001',
+      title: 'Alerts',
+      kind: 'supergroup',
+      messageThreadId: 42,
+      topicLabel: 'x'.repeat(129),
+    },
+    {
+      status: 'ready',
+      id: '-1001',
+      title: 'Alerts',
+      kind: 'supergroup',
+      messageThreadId: 42,
+      topicLabel: 42,
+    },
+    {
+      status: 'ready',
+      id: '-1001',
+      title: 'Alerts',
+      kind: 'channel',
+      messageThreadId: 42,
+      topicLabel: 'My alerts',
+    },
+    {
+      status: 'ready',
+      id: '-1001',
+      title: 'Alerts',
+      kind: 'supergroup',
+      topicLabel: 'My alerts',
     },
   ]) {
     assert.equal(isTelegramTarget(value), false, JSON.stringify(value));

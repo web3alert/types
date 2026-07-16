@@ -16,6 +16,7 @@ export type TelegramTarget = {
   kind?: TelegramTargetKind;
   messageThreadId?: number;
   topicTitle?: string;
+  topicLabel?: string;
 };
 
 export function isTelegramTarget(value: unknown): value is TelegramTarget {
@@ -53,19 +54,28 @@ export function isTelegramTarget(value: unknown): value is TelegramTarget {
   }
 
   const topicTitle = target['topicTitle'];
+  const topicLabel = target['topicLabel'];
   if (
-    topicTitle !== undefined
-    && (
-      typeof topicTitle != 'string'
-      || topicTitle.length == 0
-      || topicTitle.length > TELEGRAM_TOPIC_TITLE_MAX_LENGTH
-      || topicTitle.trim() != topicTitle
-      || kind != 'supergroup'
-      || messageThreadId === undefined
-    )
+    !isOptionalTelegramTopicText(topicTitle, kind, messageThreadId)
+    || !isOptionalTelegramTopicText(topicLabel, kind, messageThreadId)
   ) {
     return false;
   }
 
   return true;
+}
+
+function isOptionalTelegramTopicText(
+  value: unknown,
+  kind: unknown,
+  messageThreadId: unknown,
+): boolean {
+  return value === undefined || (
+    typeof value == 'string'
+    && value.length > 0
+    && value.length <= TELEGRAM_TOPIC_TITLE_MAX_LENGTH
+    && value.trim() == value
+    && kind == 'supergroup'
+    && messageThreadId !== undefined
+  );
 }
